@@ -6,9 +6,16 @@
     cursor: pointer;
     font-size: 12px;
     padding: 7px 10px 7px 10px;
+    transition: color .3s ease;
+    //border: 1px solid $light-grey;
+    
 
     &:focus{
         outline: none; // to take off the line when you click the button
+    }
+
+    &:hover{
+        color: darken($color: white, $amount: 15);
     }
 
 }
