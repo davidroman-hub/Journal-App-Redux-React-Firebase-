@@ -1,6 +1,14 @@
 import {types} from '../types/types'
 
 
+// const initialState = {
+//     uid:12123,
+//     name:'fernando',
+//     dir:{
+//         b:12
+//     }
+// }
+
 
 export const authReducer = ( state = {}, action) =>{
     switch (action.type) {
