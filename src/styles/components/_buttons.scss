@@ -1,0 +1,72 @@
+
+.btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 7px 10px 7px 10px;
+
+    &:focus{
+        outline: none; // to take off the line when you click the button
+    }
+
+}
+
+.btn-primary{
+    background-color: $primary;
+    border-radius: 2px;
+
+    &:disabled{
+        background-color: lighten($color: $primary, $amount: 25);
+    }
+    &:hover{
+        background-color: darken($color: $primary, $amount: 15);
+        //transition: border-bottom .5s ;
+    }
+}
+
+.btn-block{
+    width: 100%;
+}
+
+.social{
+    width: auto;
+    float: left;
+    background: #4181ee;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: initial;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.social .google-icon-wrapper{
+   // display: inline-block;
+    
+        width: 70px; //separar uno de otro
+        height: 50px;
+        background-color: white;
+        margin: 1px;
+        border-right: 1px;
+        border-radius: 20px;
+        //box-shadow: 0 5px 15px -5px #ffffff;//lo tengo como referencia
+        color: #e34234;
+        overflow: hidden;
+        position: relative;
+        line-height: 50px;// para centrar
+        font-size: 25px; //tam;o del logo
+        cursor: pointer;
+}
+
+.social i{
+    transition: 0.1s linear;
+}
+
+.social i:hover  {
+    transform: scale(1.1);
+    color: #46af61;
+}

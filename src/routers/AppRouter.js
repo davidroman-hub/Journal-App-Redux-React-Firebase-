@@ -17,7 +17,7 @@ export const AppRouter = () => {
                     <Route path='/auth'
                     component={AuthRouter}
                     />
-                    <Route path='/'
+                    <Route exact path='/'
                     component={JournalScreen}
                     />
                     <Redirect to='/'/>
