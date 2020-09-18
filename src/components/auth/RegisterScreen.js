@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //Action Redux 
 import { setErrorAction, removeErrorAction } from '../../actions/ui';
+import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 
 export const RegisterScreen = () => {
 
@@ -14,7 +15,7 @@ export const RegisterScreen = () => {
         //const state = useSelector( state => state.userInterface);
         const {msgError} = useSelector( state => state.userInterface);
         
-        console.log(msgError)
+        //console.log(msgError)
     
     // form
         const [formValues, handleInputRegister] = useForm({
@@ -33,7 +34,8 @@ export const RegisterScreen = () => {
         e.preventDefault();
         //console.log(formValues);
         if(isFormValid()){
-            console.log('Formulario Correcto')
+            // console.log('Formulario Correcto')
+            dispatch(startRegisterWithEmailPasswordName(email,password,name))
         }
         
     }
