@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 
 //Actions Redux
 
-import { login } from '../../actions/auth'
+import { login, startLoginEmailPassword } from '../../actions/auth'
 
 export const LoginScreen = () => {
 
@@ -21,7 +21,7 @@ export const LoginScreen = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         console.log(formValues)
-        dispatch(login(12345,'hernan'))
+        dispatch(startLoginEmailPassword(email,password))
     }
 
 
