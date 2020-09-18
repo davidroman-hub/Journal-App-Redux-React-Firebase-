@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 
 //Actions Redux
 
-import { login, startLoginEmailPassword } from '../../actions/auth'
+import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth'
 
 export const LoginScreen = () => {
 
@@ -23,6 +23,13 @@ export const LoginScreen = () => {
         console.log(formValues)
         dispatch(startLoginEmailPassword(email,password))
     }
+
+
+    ///Google
+
+    const handleGoogleLogin = () => {
+        dispatch(startGoogleLogin())
+    } 
 
 
     return (
@@ -59,8 +66,10 @@ export const LoginScreen = () => {
                     <h3>Login with social networks</h3>
                     <br/>
                         <div className='social'>
-                            <div className='google-icon-wrapper'>
-                                <i class="fab fa-google"></i>
+                            <div className='google-icon-wrapper'
+                                    onClick={handleGoogleLogin}
+                            >
+                                <i className="fab fa-google"></i>
                             </div>
                             <p className='btn-text'>
                                 <b>Sign in With Google</b>
