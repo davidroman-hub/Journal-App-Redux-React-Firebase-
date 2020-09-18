@@ -1,25 +1,25 @@
 import { types } from "../types/types"
 import { firebase, googleAuthProvider } from '../firebase/firebase-config'
+import {startLoadingAction,finishLoadingAction} from '../actions/ui'
 
 export const startLoginEmailPassword = (email, password) => {
-    
+
     return (dispatch) => {
-        
         // setTimeout(() => {
         //     dispatch(login(123,'pedro'))
         // },3500)
-        
+        dispatch(startLoadingAction())
         firebase.auth().signInWithEmailAndPassword(email,password) //remember the function from google excat name
         .then( ({ user }) => {
             dispatch(
-                login(user.uid, user.displayName)
+                login(user.uid, user.displayName),
             )
+            dispatch(finishLoadingAction())
         }) 
         .catch(e => {
             console.log(e)
+            dispatch(finishLoadingAction())
         })
-
-
     }
 }
 
@@ -40,7 +40,6 @@ export const startRegisterWithEmailPasswordName = (email,password,name) => {
     }
 
 }
-
 
 
 export const startGoogleLogin = () => {
