@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -17,20 +17,36 @@ import { login } from '../actions/auth';
 export const AppRouter = () => {
 
     const dispatch = useDispatch()
-    
+    const [checking, setcheking] = useState(true);
+    const [isLoggedIn, setIsloggedIn] = useState(false)
+
+
+
+
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
-
             //console.log(user)
             // if the object user have something 
             if(user?.uid){
                     // we exec login and bring the values also the email if your want
                 dispatch(login(user.uid, user.displayName))
+                setIsloggedIn(true)
+            }else{
+                setIsloggedIn(false)
             }
+            setcheking(false)
         })
-    }, [dispatch])
+    }, [dispatch,setcheking, setIsloggedIn])
     
     
+    if(checking){
+        return (
+            <h1> Wait... </h1>
+        )
+    }
+
+
     return (
         <Router>
             <div>
