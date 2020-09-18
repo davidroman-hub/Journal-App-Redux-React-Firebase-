@@ -1,19 +1,51 @@
 // comand rafc
-import React from 'react';
+import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
 
 
 export const RegisterScreen = () => {
+    
+    // form
+        const [formValues, handleInputRegister] = useForm({
+            name:'david',
+            email:'david1@gmail.com',
+            password:'123456',
+            confirm:'123456'
+        })
+
+        const {name, email, password, confirm} = formValues;
+
+    // const handleRegister // event
+
+            
+    const handleRegister = (e) => {
+        e.preventDefault();
+        console.log(formValues);
+        
+    }
+    
+
+    // validation
+
+    const isFormValid = () => {
+        //
+    }
+    
+    
+    
     return (
         <>
             <h3 className='auth__title'>Register</h3>
-            <form>
+            <form onSubmit={ handleRegister}>
             <input
                     type='text'
                     placeholder='Name'
                     name='name'
                     className='auth__input'
                     autoComplete='off'
+                    value={name}
+                    onChange={handleInputRegister}
                 />
                 <input
                     type='email'
@@ -21,18 +53,24 @@ export const RegisterScreen = () => {
                     name='email'
                     className='auth__input'
                     autoComplete='off'
+                    value={email}
+                    onChange={handleInputRegister}
                 />
                 <input
                     type='password'
                     placeholder='Password'
                     name='password'
                     className='auth__input'
+                    value={password}
+                    onChange={handleInputRegister}
                 />
                 <input
                     type='password'
                     placeholder='Confirm Password'
                     name='confirm'
                     className='auth__input'
+                    value={confirm}
+                    onChange={handleInputRegister}
                 />
                 <button  
                 className='btn btn-primary btn-block mb-5'
@@ -41,19 +79,6 @@ export const RegisterScreen = () => {
                     REGISTER
                 </button>
                 <br/>
-
-                {/* <div className='auth__social-networks'>
-                    <h3>Login with social networks</h3>
-                    <br/>
-                        <div className='social'>
-                            <div className='google-icon-wrapper'>
-                                <i class="fab fa-google"></i>
-                            </div>
-                            <p className='btn-text'>
-                                <b>Sign in With Google</b>
-                            </p>
-                        </div>
-                </div> */}
                 <Link to='/auth/login'
                     className='link'
                 >
