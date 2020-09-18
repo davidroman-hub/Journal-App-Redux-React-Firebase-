@@ -4,9 +4,22 @@ import { firebase, googleAuthProvider } from '../firebase/firebase-config'
 export const startLoginEmailPassword = (email, password) => {
     
     return (dispatch) => {
-        setTimeout(() => {
-            dispatch(login(123,'pedro'))
-        },3500)
+        
+        // setTimeout(() => {
+        //     dispatch(login(123,'pedro'))
+        // },3500)
+        
+        firebase.auth().signInWithEmailAndPassword(email,password) //remember the function from google excat name
+        .then( ({ user }) => {
+            dispatch(
+                login(user.uid, user.displayName)
+            )
+        }) 
+        .catch(e => {
+            console.log(e)
+        })
+
+
     }
 }
 
