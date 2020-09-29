@@ -31,6 +31,11 @@ export const activeNote = (id, note) => ({
     }
 })
 
+export const setNotes = ( notes ) => ({
+    type: types.notesLoad,
+    payload:notes
+})
+
 
 
 /// to save

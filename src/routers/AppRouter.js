@@ -16,6 +16,7 @@ import { login } from '../actions/auth';
 import {PrivateRoute} from './PrivateRoute';
 import {PublicRoute} from './PublicRoute';
 import {loadNotes} from '../helpers/loadNotes';
+import { setNotes } from '../actions/notes';
 
 export const AppRouter = () => {
 
@@ -28,14 +29,15 @@ export const AppRouter = () => {
 
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged((user) => {
+        firebase.auth().onAuthStateChanged( async (user) => {
             //console.log(user)
             // if the object user have something 
             if(user?.uid){
                     // we exec login and bring the values also the email if your want
                 dispatch(login(user.uid, user.displayName));
                 setIsloggedIn(true);
-                loadNotes(user.uid)
+                const notes = await loadNotes(user.uid)
+                dispatch(setNotes(notes))
 
             }else{
                 setIsloggedIn(false)

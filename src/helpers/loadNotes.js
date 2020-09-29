@@ -17,7 +17,7 @@ export const loadNotes = async ( uid ) => {
         })
     });
     
-    console.log(notes) //second step is to see all the arrangement
-
+    //console.log(notes) //second step is to see all the arrangement
+    
     return notes 
 }
