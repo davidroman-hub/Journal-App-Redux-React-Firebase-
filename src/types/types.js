@@ -18,7 +18,7 @@ export const types = {
     //notes types
 
     notesAddNew : '[Notes] New Note',
-    notesActive : '[Notes] Set actibe note',
+    notesActive : '[Notes] Set active note',
     notesLoad : '[Notes] Load notes',
     notesUpdated : '[Notes] Update notes Save',
     notesFileUrl : '[Notes] Updated image url',
