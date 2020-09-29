@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const JournalEntry = () => {
+export const JournalEntry = ({id, date, title, body, url }) => {
+    console.log(id, date, title, body, url)
     return (
         <div className='journal__entry pointer'>
             <div className='journal__entry-picture'
