@@ -15,8 +15,7 @@ import JournalScreen from '../components/journal/JorunalScreen'
 import { login } from '../actions/auth';
 import {PrivateRoute} from './PrivateRoute';
 import {PublicRoute} from './PublicRoute';
-import {loadNotes} from '../helpers/loadNotes';
-import { setNotes } from '../actions/notes';
+import { startLoadingNotes } from '../actions/notes';
 
 export const AppRouter = () => {
 
@@ -36,8 +35,7 @@ export const AppRouter = () => {
                     // we exec login and bring the values also the email if your want
                 dispatch(login(user.uid, user.displayName));
                 setIsloggedIn(true);
-                const notes = await loadNotes(user.uid)
-                dispatch(setNotes(notes))
+                dispatch(startLoadingNotes(user.uid));
 
             }else{
                 setIsloggedIn(false)
