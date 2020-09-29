@@ -1,6 +1,7 @@
 import React from 'react';
-import {LoginScreen} from '../components/auth/LoginScreen'
-import {RegisterScreen} from '../components/auth/RegisterScreen'
+import {LoginScreen} from '../components/auth/LoginScreen';
+import {RegisterScreen} from '../components/auth/RegisterScreen';
+
 import {
     
     Switch,
