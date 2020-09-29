@@ -5,13 +5,15 @@ import thunk from 'redux-thunk';
 
 //imports
 import {authReducer} from '../reducers-redux/authReducer';
+import { notesReducer } from '../reducers-redux/notesReducers';
 import {uiReducer} from '../reducers-redux/uiiReducer';
 
 const composeEnhancers = (typeof window !== 'undefined'&& window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const reducers = combineReducers({
     auth: authReducer,
-    userInterface:uiReducer
+    userInterface:uiReducer,
+    notes:notesReducer
 })
 
 // export const store = createStore(
