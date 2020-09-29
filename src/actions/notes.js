@@ -1,6 +1,7 @@
 import { db } from "../firebase/firebase-config";
 import { types } from '../types/types';
 
+
 export const startNewNote = () => {
     return async (dispatch, getState) => {
 
@@ -13,7 +14,6 @@ export const startNewNote = () => {
             body:'',
             date: new Date().getTime()
         }
-
         const  docRef = await db.collection(`${uid}/journal/notes`).add( newNote);
         console.log(docRef)
         //// when i have all the information from the note i want to activate this note in automatic
