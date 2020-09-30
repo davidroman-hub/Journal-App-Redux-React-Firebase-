@@ -61,7 +61,7 @@ export const NoteScreen = () => {
                     (note.url) &&
                         (<div className='notes__image'>
                                 <img
-                                    src='https://cdn.pixabay.com/photo/2017/06/05/22/49/digital-marketing-2375583_960_720.jpg'
+                                    src={note.url}
                                     alt='arbol'
                                 />
                         </div>)

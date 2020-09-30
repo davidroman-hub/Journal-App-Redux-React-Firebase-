@@ -112,9 +112,20 @@ export const refreshNote = ( id , note) => ({
 export const startUploading = (file) => {
     return async (dispatch, getState) => {
         const {active:activeNote} = getState().notes;
+        Swal.fire({
+            title:'Uploading...',
+            text:'Please Wait...',
+            allowOutsideClick:false,
+            onBeforeOpen:() => {
+                Swal.showLoading() // To show an alert when is updating the photo
+            }
+        });
         // console.log(file)
         // console.log(activeNote)
-        const fileUrl = await fileUpload(file)
-        console.log(fileUrl)
+        const fileUrl = await fileUpload(file);
+        activeNote.url = fileUrl;
+        //console.log(fileUrl)
+        dispatch(startSaveNote(activeNote))
+        Swal.close()   //close the alert when the upload is finish
     }
 }
