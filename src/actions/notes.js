@@ -104,4 +104,14 @@ export const refreshNote = ( id , note) => ({
             ...note
         }
     }
-})
+});
+
+/// Start loading photo
+
+export const startUploading = (file) => {
+    return (dispatch, getState) => {
+        const {active:activeNote} = getState().notes;
+        console.log(file)
+        console.log(activeNote)
+    }
+}
