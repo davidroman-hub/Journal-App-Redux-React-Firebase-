@@ -1,11 +1,12 @@
 import React, { useEffect,useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import NotesAppBar from './NotesAppBar';
 import { useForm } from '../../hooks/useForm';
-
+import { activeNote } from '../../actions/notes'
 
 export const NoteScreen = () => {
 
+    
 
     const {active:note} = useSelector(state => state.notes)
     //console.log(note)
@@ -24,6 +25,15 @@ export const NoteScreen = () => {
             activeId.current = note.id
         }
     },[note,reset])
+
+    //Now we have to upload the active note, we have to use useDispatch again to put in the 
+    //state the things that we are writing
+    const dispatch = useDispatch()    
+
+    useEffect(() => {
+        //console.log(formValues)
+        dispatch(activeNote(formValues.id,{...formValues}))
+    },[formValues, dispatch])
     
     return (
         <div className='notes__main-content'>
@@ -36,12 +46,15 @@ export const NoteScreen = () => {
                         autoComplete='off'
                         value={title}
                         onChange={handleInputChange}
+                        name='title'
+                        
                 />
                 <textarea
                 placeholder='What happened today?'
                 className='notes__textarea'
                 value={body}
                 onChange={handleInputChange}
+                name='body'
                 >
                 </textarea>
                 {   
