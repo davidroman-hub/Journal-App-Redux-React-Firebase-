@@ -68,3 +68,18 @@ export const setNotes = ( notes ) => ({
 //     }
 //   }
 //}
+
+////////////// Save new note in the DB
+
+export const startSaveNote = ( note ) => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth; /// <== we need the Id from the user  
+        if ( !note.url ){
+            delete note.url
+        }
+        const noteToFirestore = { ...note}; // <== what we want to save ( the new note)
+        delete noteToFirestore.id; // <== we need to eliminate the note id because we dont want to use the id from the objcet(modify)
+        await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore); // 
+    } 
+}
+
