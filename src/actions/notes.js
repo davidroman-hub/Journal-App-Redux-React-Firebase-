@@ -80,6 +80,21 @@ export const startSaveNote = ( note ) => {
         const noteToFirestore = { ...note}; // <== what we want to save ( the new note)
         delete noteToFirestore.id; // <== we need to eliminate the note id because we dont want to use the id from the objcet(modify)
         await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore); // 
+        //dispatch(startLoadingNotes( uid)); <== if i do this i update all the notes.. and i dont want this
+        dispatch(refreshNote(note.id, note));
     } 
 }
 
+
+//only i need to update the note that changed.. so i need to modify that
+
+export const refreshNote = ( id , note) => ({
+    type: types.notesUpdated,
+    payload:{
+        id, 
+        note:{
+            id,
+            ...note
+        }
+    }
+})
