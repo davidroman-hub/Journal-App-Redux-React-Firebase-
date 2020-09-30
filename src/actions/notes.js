@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { db } from "../firebase/firebase-config";
 import { loadNotes } from "../helpers/loadNotes";
 import { types } from '../types/types';
@@ -77,11 +78,17 @@ export const startSaveNote = ( note ) => {
         if ( !note.url ){
             delete note.url
         }
-        const noteToFirestore = { ...note}; // <== what we want to save ( the new note)
-        delete noteToFirestore.id; // <== we need to eliminate the note id because we dont want to use the id from the objcet(modify)
-        await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore); // 
-        //dispatch(startLoadingNotes( uid)); <== if i do this i update all the notes.. and i dont want this
-        dispatch(refreshNote(note.id, note));
+        try{
+            const noteToFirestore = { ...note}; // <== what we want to save ( the new note)
+            delete noteToFirestore.id; // <== we need to eliminate the note id because we dont want to use the id from the objcet(modify)
+            await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore); // 
+            //dispatch(startLoadingNotes( uid)); <== if i do this i update all the notes.. and i dont want this
+            dispatch(refreshNote(note.id, note));// <== this is the correct way to save the notes
+            Swal.fire('Saved', note.title, "success")
+        }
+        catch(error){
+            console.log(console.error)
+        }
     } 
 }
 
