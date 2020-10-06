@@ -2,7 +2,7 @@ import React, { useEffect,useRef } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import NotesAppBar from './NotesAppBar';
 import { useForm } from '../../hooks/useForm';
-import { activeNote } from '../../actions/notes'
+import { activeNote, startDeleteingNotes } from '../../actions/notes'
 
 export const NoteScreen = () => {
 
@@ -12,7 +12,7 @@ export const NoteScreen = () => {
     //console.log(note)
     const [formValues, handleInputChange,reset] = useForm(note)
 
-    const {body,title} = formValues;
+    const {body,title, id} = formValues;
 
     // we need to rebuild the state and for that we can use reset from useForm and use Effect
     // useRef = i can hold a valiable mutable and to rebuild all the component if change
@@ -34,6 +34,10 @@ export const NoteScreen = () => {
         //console.log(formValues)
         dispatch(activeNote(formValues.id,{...formValues}))
     },[formValues, dispatch])
+
+    const handleDelete = () => {
+        dispatch(startDeleteingNotes(id))
+    }
     
     return (
         <div className='notes__main-content'>
@@ -67,6 +71,10 @@ export const NoteScreen = () => {
                         </div>)
                 }
             </div>
+            <button
+            onClick={handleDelete}
+            className='btn btn-danger'
+            >Delete</button>
         </div>
     )
 }

@@ -42,6 +42,14 @@ export const notesReducer = (state = initialState, action) => {
                     :note
                 )
             };
+            case types.notesDeleted:
+                return{
+                    ...state,
+                    // i need to delete the active note because when i delete it will not exist
+                    active:null,
+                    // i need to the return all the notes whose the id its diferent
+                    notes:state.notes.filter( note => note.id !== action.payload)
+                }
         
         default:
             return state;

@@ -129,3 +129,22 @@ export const startUploading = (file) => {
         Swal.close()   //close the alert when the upload is finish
     }
 }
+
+// Erase note 
+
+// to delete in firebase we need to scope to the node from firebase and utilice the method delete
+//but before that we need tue id
+
+
+export const startDeleteingNotes = (id) => {
+    return async (dispatch, getState) => {
+        const uid = getState().auth.uid // <== this id from the state
+        await db.doc(`${uid}/journal/notes/${id}`).delete(); // this is the end poinit to recover 
+        dispatch(deleteNote(id)); // i need to create an action to modify the store
+    }
+}
+
+export const deleteNote = (id) => ({
+    type:types.notesDeleted,
+    payload:id
+})
