@@ -78,6 +78,7 @@ export const startLogout = () => {
     return async (dispatch) => {
         await firebase.auth().signOut();
         dispatch(logout())
+        dispatch(purgueLogout())
     }
 }
 
@@ -85,4 +86,6 @@ export const logout = () => ({
     type:types.LOGOUT
 })
 
-
+export const purgueLogout = () => ({
+    type:types.notesLogoutCleaning
+}) 

@@ -55,6 +55,12 @@ export const notesReducer = (state = initialState, action) => {
                     // i need to the return all the notes whose the id its diferent
                     notes:state.notes.filter( note => note.id !== action.payload)
                 }
+            case types.notesLogoutCleaning:
+                return{
+                    ...state,
+                    active:null,
+                    notes:[]
+                }
         
         default:
             return state;
